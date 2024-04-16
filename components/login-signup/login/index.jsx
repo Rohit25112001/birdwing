@@ -1,9 +1,10 @@
 'use client'
 
-import { LockOutlined, UserOutlined, GoogleOutlined } from '@ant-design/icons';
+import { LockOutlined, UserOutlined, GoogleOutlined, MobileOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Divider, message } from 'antd';
-import { useState } from 'react';
 import axios from 'axios';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation'
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_ENDPOINT
 axios.defaults.withCredentials = true
@@ -40,7 +41,7 @@ const Login = () => {
     <div className='bg-gray-200 flex justify-center items-center w-[100vw] h-[100vh]'>
         <div className='bg-gray-100 w-[420px] p-4 rounded-sm'>
             <div className='pb-3'>
-                <h1 className='text-[22px] border-b-2 border-blue-500 w-fit pb-[1px]'>Login</h1>
+                <h1 className='text-[22px] border-b-2 border-blue-500 w-fit pb-[1px]'>Signup</h1>
             </div>
             <Form
                 onFinish={loginForm}
@@ -51,6 +52,7 @@ const Login = () => {
                   {
                     email:'a@gmail.com',
                     password:123,
+                    mobile:9899,
                     remember:true
                   }
                 }
@@ -64,11 +66,11 @@ const Login = () => {
                 </Form.Item>
 
                 <Form.Item name="remember" valuePropName="checked">
-                    <Checkbox>Remember me</Checkbox>
+                    <Checkbox>remember me</Checkbox>
                 </Form.Item>
 
                 <Button 
-                    loading={loading}
+                    loading={loading} 
                     htmlType='submit' 
                     className='w-full bg-blue-500 text-white h-[35px]'
                 >
@@ -79,7 +81,7 @@ const Login = () => {
                 {/* <Button className='h-auto'>
                     <GoogleOutlined />
                 </Button> */}
-                <span className='text-[16px]'>Dont't have account ? <a href='/auth/signup'>Create</a></span>
+                <span className='text-[16px]'>Already have account ? <a href='/auth/login'>Login</a></span>
             </Form>
         </div>
     </div>
