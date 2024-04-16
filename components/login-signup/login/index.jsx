@@ -82,7 +82,7 @@ const Login = () => {
           <h1 className="text-[30px] text-center font-semibold">WELCOME TO LOGDY</h1>
           <p className="py-4 md:px-12">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-            Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s, 
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
             when an unknown printer took a galley of type and scrambled
           </p>
           <div className="flex gap-8 justify-center items-center">
