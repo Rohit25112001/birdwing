@@ -182,7 +182,7 @@ const Login = () => {
         </div>
 
           <div className="text-center pb-4">
-            <span>Not have acocunt? <Link href="/" className="text-blue-400">Create</Link></span>
+            <span>Don't have an account? <Link href="/" className="text-blue-400">Create</Link></span>
           </div>
         
           <div className="md:hidden flex gap-8 justify-center items-center py-2 ">
