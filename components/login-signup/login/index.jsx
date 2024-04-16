@@ -1,26 +1,27 @@
 'use client'
 
-import { LockOutlined, UserOutlined, GoogleOutlined } from '@ant-design/icons';
+import { LockOutlined, UserOutlined, GoogleOutlined, MobileOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Divider, message } from 'antd';
-import { useState } from 'react';
 import axios from 'axios';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation'
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_ENDPOINT
 axios.defaults.withCredentials = true
 
-const Login = () => {
+const Signup = () => {
     const [loading, setLoading] = useState(false)
+    const router = useRouter();
     
-    const loginForm = async (e) =>{
+    const loginForm= async (e) =>{
         try{
             setLoading(true)
-            const data = await axios.get(`/auth/login?email=${e.email}&password=${e.password}`);
-            // message.success({
-            //     content: 'Login Success verifying...',
-            //     duration: 2
-            // })
-            // router.push('/');
-            console.log(data)
+            await axios.post('/auth/signup',e);
+            message.success({
+                content: 'Signup Success redirecting...',
+                duration: 2
+            })
+            router.push('/');
         }
         catch(err){
             setLoading(true)
@@ -33,7 +34,6 @@ const Login = () => {
         finally{
             setLoading(false)
         }
-        console.log(e);
     }
 
   return (
@@ -60,15 +60,15 @@ const Login = () => {
                 </Form.Item>
 
                 <Form.Item name='password'>
-                    <Input type='password' prefix={<LockOutlined />} placeholder='***********'/>
+                    <Input prefix={<LockOutlined />} placeholder='***********'/>
                 </Form.Item>
 
                 <Form.Item name="remember" valuePropName="checked">
-                    <Checkbox>Remember me</Checkbox>
+                    <Checkbox>remember me</Checkbox>
                 </Form.Item>
 
                 <Button 
-                    loading={loading}
+                    loading={loading} 
                     htmlType='submit' 
                     className='w-full bg-blue-500 text-white h-[35px]'
                 >
@@ -76,10 +76,13 @@ const Login = () => {
                 </Button>
 
                 <Divider>or</Divider>
-                <span className='text-[16px]'>Dont't have account ? <a href='/auth/signup'>Create</a></span>
+                {/* <Button className='h-auto'>
+                    <GoogleOutlined />
+                </Button> */}
+                <span className='text-[16px]'>Already have account ? <a href='/auth/login'>Login</a></span>
             </Form>
         </div>
     </div>
   );
 };
-export default Login;
+export default Signup;
