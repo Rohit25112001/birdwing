@@ -11,17 +11,17 @@ axios.defaults.withCredentials = true
 
 const Signup = () => {
     const [loading, setLoading] = useState(false)
-    const router = useRouter();
     
-    const loginForm= async (e) =>{
+    const loginForm = async (e) =>{
         try{
             setLoading(true)
-            await axios.post('/auth/signup',e);
-            message.success({
-                content: 'Signup Success redirecting...',
-                duration: 2
-            })
-            router.push('/');
+            const data = await axios.get(`/auth/login?email=${e.email}&password=${e.password}`);
+            // message.success({
+            //     content: 'Login Success verifying...',
+            //     duration: 2
+            // })
+            // router.push('/');
+            console.log(data)
         }
         catch(err){
             setLoading(true)
@@ -34,6 +34,7 @@ const Signup = () => {
         finally{
             setLoading(false)
         }
+        console.log(e);
     }
 
   return (
