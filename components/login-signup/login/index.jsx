@@ -15,9 +15,7 @@ const Signup = () => {
     const loginForm = async (e) =>{
         try{
             setLoading(true)
-            const data = await axios.post('/auth/login',e,{ 
-                withCredentials: true 
-            });
+            const data = await axios.post('/auth/login',e);
             // message.success({
             //     content: 'Login Success verifying...',
             //     duration: 2
@@ -82,7 +80,7 @@ const Signup = () => {
                 {/* <Button className='h-auto'>
                     <GoogleOutlined />
                 </Button> */}
-                <span className='text-[16px]'>Already have account ? <a href='/auth/login'>Login</a></span>
+                <span className='text-[16px]'>Already have account ? <a href='/auth/signup'>Create</a></span>
             </Form>
         </div>
     </div>
