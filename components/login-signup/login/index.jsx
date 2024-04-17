@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_ENDPOINT
 axios.defaults.withCredentials = true
 
-const Signup = () => {
+const Login = () => {
     const [loading, setLoading] = useState(false)
     
     const loginForm = async (e) =>{
@@ -92,4 +92,4 @@ const Signup = () => {
     </div>
   );
 };
-export default Signup;
+export default Login;
