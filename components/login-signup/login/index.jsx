@@ -19,6 +19,8 @@ const Signup = () => {
             { 
                 email: e.email, 
                 password: e.password  
+            },{ 
+                withCredentials: true 
             });
             // message.success({
             //     content: 'Login Success verifying...',
