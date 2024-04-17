@@ -15,7 +15,14 @@ const Signup = () => {
     const loginForm = async (e) =>{
         try{
             setLoading(true)
-            const data = await axios.post('/auth/login',e);
+            const data = await axios.post('/auth/login',
+            { 
+                email: e.email, 
+                password: e.password  
+            }
+            ,{ 
+                withCredentials: true 
+            });
             // message.success({
             //     content: 'Login Success verifying...',
             //     duration: 2
