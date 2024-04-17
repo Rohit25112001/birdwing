@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_ENDPOINT
-axios.defaults.withCredentials = true
+// axios.defaults.withCredentials = true
 
 const Login = () => {
     const [loading, setLoading] = useState(false)
