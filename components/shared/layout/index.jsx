@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Dropdown } from 'antd';
-import Image from 'next/image'
+import Link from 'next/link'
 
 //json files
 const corrency_Lang =  [
@@ -86,49 +86,7 @@ const corrency_Lang =  [
     }
   ]
 
-const menus = [
-  {
-    name:"new product",
-    dropdown:true,
-    grid:3
-  },
-  {
-    name:"specials",
-    dropdown:true,
-    grid:1
-  },
-  {
-    name:"best sellers",
-    dropdown:true,
-    grid:1
-  },
-  {
-    name:"for home",
-    dropdown:true,
-    grid:4
-  },
-  {
-    name:"for mens",
-    dropdown:true,
-    grid:5
-  },
-  {
-    name:"for womens",
-    dropdown:false
-  },
-  {
-    name:"for childrens",
-    dropdown:false
-  },
-  {
-    name:"valentine days",
-    dropdown:false
-  },
-  {
-    name:"x-mas",
-    dropdown:false
-  }
-]
+
 
   const Currency_languageDropdown = ({info}) => {
     const [selected, setSelected] = useState();
@@ -174,11 +132,19 @@ const menus = [
   
 
 const Layout =() =>{
+  const [activeMenu, setactiveMenu] = useState(null);
 
   // const onFinish = (values) => {
   //   console.log('Received values:', values);
   // };
   
+
+  const handleMouseEnter =(e) =>{
+    setactiveMenu(e)
+  }
+  const handleMouseLeave =() =>{
+    setactiveMenu(null)
+  }
   
     return(
         <>
@@ -200,7 +166,7 @@ const Layout =() =>{
                 <li>
                   <img src="/logo.svg" className="w-[230px]"/>
                 </li>
-                <li className="w-[430px]">
+                <li className="w-[500px]">
                   <form className="flex">
                     <input type="text" placeholder="Search" className="w-[100%] rounded-tl-lg rounded-bl-lg text-[14px] px-4"/>
                     <button className="bg-[#FF6701] rounded-tr-lg rounded-br-lg text-white py-3 px-3 flex items-center">
@@ -253,15 +219,134 @@ const Layout =() =>{
             </nav>
 
             <nav className="bg-[#252525] lg:block hidden">
-              <ul className="flex justify-evenly py-3 capitalize font-semibold px-4">
-                {
-                  menus.map((menuItems,menuIndex)=>
-                      <span className="relative" key={menuIndex}>
-                        <li className="text-white hover:text-gray-300 cursor-pointer">{menuItems.name}</li>
-                        <div className="bg-red-500 absolute top-9">ff</div>
-                      </span>  
-                    )
-                }
+              <ul className="flex justify-evenly py-3 uppercase font-semibold px-4" onMouseLeave={handleMouseLeave}>
+                <li 
+                  className="text-white cursor-pointer text-[13px] relative"
+                  onMouseEnter={() => handleMouseEnter('new product')}
+                >
+                  <Link href="#" className="hover:text-gray-300">
+                    New Product
+                  </Link>
+                  {
+                    activeMenu==='new product' &&
+                    <div className="text-black shadow-2xl drop-shadow-lg bg-gray-100 absolute top-8 grid grid-cols-3 w-[650px] gap-3 p-8">
+                      <div>
+                        <div>
+                          <img src="/menus/m1.jpg"/>
+                        </div>
+                        <div>
+                          <h1 className="pt-3 pb-2 font-semibold text-[16px]">Gifts</h1>
+                          <div className="flex flex-col h-full gap-2 pb-2 font-normal">
+                            <Link href="#" className="hover:text-orange-500">for architecture</Link>
+                            <Link href="#" className="hover:text-orange-500">for fashion designer</Link>
+                            <Link href="#" className="hover:text-orange-500">for product designer</Link>
+                            <Link href="#" className="hover:text-orange-500">valentine's days</Link>
+                            <Link href="#" className="hover:text-orange-500">x-mas</Link>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          <img src="/menus/m2.jpg"/>
+                        </div>
+                        <div>
+                          <h1 className="pt-3 pb-2 font-semibold text-[16px]">Homeware</h1>
+                          <div className="flex flex-col h-full gap-2 pb-2 font-normal">
+                            <Link href="#" className="hover:text-orange-500">dinning</Link>
+                            <Link href="#" className="hover:text-orange-500">lighting and sounds</Link>
+                            <Link href="#" className="hover:text-orange-500">for product designer</Link>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          <img src="/menus/m3.jpg" className="w-full"/>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </li>
+                <li 
+                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
+                  onMouseEnter={() => handleMouseEnter('specials')}
+                >
+                  <Link href="#">
+                    specials
+                  </Link>
+                  {
+                    activeMenu==='specials' &&
+                    <div className="bg-red-500 absolute top-8">ff</div>
+                  }
+                </li>
+                <li 
+                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
+                  onMouseEnter={() => handleMouseEnter('best sellers')}
+                >
+                  <Link href="#">
+                    best sellers
+                  </Link>
+                  {
+                    activeMenu==='best sellers' &&
+                    <div className="bg-red-500 absolute top-8">ff</div>
+                  }
+                </li>
+                <li 
+                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
+                  onMouseEnter={() => handleMouseEnter('for home')}
+                >
+                  <Link href="#">
+                    for home
+                  </Link>
+                  {
+                    activeMenu==='for home' &&
+                    <div className="bg-red-500 absolute top-8">ff</div>
+                  }
+                </li>
+                <li 
+                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
+                  onMouseEnter={() => handleMouseEnter('for mens')}
+                >
+                  <Link href="#">
+                    for mens
+                  </Link>
+                  {
+                    activeMenu==='for mens' &&
+                    <div className="bg-red-500 absolute top-8">ff</div>
+                  }
+                </li>
+
+                <li 
+                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
+                  onMouseEnter={() => handleMouseEnter(null)}
+                >
+                  <Link href="#">
+                    for womens
+                  </Link>
+                </li>
+                <li 
+                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
+                  onMouseEnter={() => handleMouseEnter(null)}
+                >
+                  <Link href="#">
+                    for childrens
+                  </Link>
+                </li>
+                <li 
+                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
+                  onMouseEnter={() => handleMouseEnter(null)}
+                >
+                  <Link href="#">
+                    valentine days
+                  </Link>
+                </li>
+                <li 
+                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
+                  onMouseEnter={() => handleMouseEnter(null)}
+                >
+                  <Link href="#">
+                    x-mas
+                  </Link>
+                </li>
              </ul>
             </nav>
         </>
