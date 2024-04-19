@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Dropdown } from 'antd';
+import Image from 'next/image'
 
 const corrency_Lang =  [
     {
@@ -146,9 +147,11 @@ const Layout =() =>{
                     <Currency_languageDropdown info="currency"/>
                 </div>
             </nav>
-            <nav className="bg-[#313131] py-3">
+
+            {/*desktop navbar*/}
+            <nav className="bg-[#313131] py-3 lg:block hidden">
               <ul className="flex justify-around items-center">
-                <li className=" bg-red-500">
+                <li>
                   <img src="/logo.svg" className="w-[230px]"/>
                 </li>
                 <li className="w-[430px]">
@@ -175,7 +178,34 @@ const Layout =() =>{
                 </li>
               </ul>
             </nav>
-            <nav className="bg-red-500">Hello</nav>
+
+            {/*mobile & tab navbar*/}
+            <nav className="lg:hidden block">
+              <ul className="flex justify-between items-center px-3 py-2 border-b border-gray-300">
+                <li>
+                  <button className="hover:bg-gray-300 p-1 rounded-full flex items-center"><i className='bx bx-menu md:text-[30px] text-[25px]'></i></button>
+                </li>
+                <li>
+                  <img src="/mobile-logo.svg" className="md:w-[200px] w-[160px]"/>
+                  {/* <Image src="/mobile-logo.svg" width={200} height={20}/> */}
+                </li>
+                <li>
+                  <span className="flex items-center md:text-[14px] text-[12px]">
+                    <i className='bx bx-cart md:text-[30px] text-[25px] mx-1'></i>
+                    Cart
+                  </span>
+                </li>
+              </ul>
+              <div className="py-2 px-4">
+                <form className="flex">
+                    <input type="text" placeholder="Search" className="w-[100%] rounded-tl-lg rounded-bl-lg text-[14px] px-4"/>
+                    <button className="bg-[#FF6701] rounded-tr-lg rounded-br-lg text-white py-3 px-3 flex items-center">
+                      <i className='bx bx-search text-[24px] flex items-center'></i>
+                    </button>
+                  </form>
+              </div>
+            </nav>
+            <nav className="bg-red-500 lg:block hidden">Hello</nav>
         </>
     )
 }
