@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Dropdown } from 'antd';
 import Image from 'next/image'
 
+//json files
 const corrency_Lang =  [
     {
       language: "English",
@@ -85,6 +86,50 @@ const corrency_Lang =  [
     }
   ]
 
+const menus = [
+  {
+    name:"new product",
+    dropdown:true,
+    grid:3
+  },
+  {
+    name:"specials",
+    dropdown:true,
+    grid:1
+  },
+  {
+    name:"best sellers",
+    dropdown:true,
+    grid:1
+  },
+  {
+    name:"for home",
+    dropdown:true,
+    grid:4
+  },
+  {
+    name:"for mens",
+    dropdown:true,
+    grid:5
+  },
+  {
+    name:"for womens",
+    dropdown:false
+  },
+  {
+    name:"for childrens",
+    dropdown:false
+  },
+  {
+    name:"valentine days",
+    dropdown:false
+  },
+  {
+    name:"x-mas",
+    dropdown:false
+  }
+]
+
   const Currency_languageDropdown = ({info}) => {
     const [selected, setSelected] = useState();
     
@@ -133,6 +178,7 @@ const Layout =() =>{
   // const onFinish = (values) => {
   //   console.log('Received values:', values);
   // };
+  
   
     return(
         <>
@@ -205,7 +251,19 @@ const Layout =() =>{
                   </form>
               </div>
             </nav>
-            <nav className="bg-red-500 lg:block hidden">Hello</nav>
+
+            <nav className="bg-[#252525] lg:block hidden">
+              <ul className="flex justify-evenly py-3 capitalize font-semibold px-4">
+                {
+                  menus.map((menuItems,menuIndex)=>
+                      <span className="relative" key={menuIndex}>
+                        <li className="text-white hover:text-gray-300 cursor-pointer">{menuItems.name}</li>
+                        <div className="bg-red-500 absolute top-9">ff</div>
+                      </span>  
+                    )
+                }
+             </ul>
+            </nav>
         </>
     )
 }
