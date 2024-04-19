@@ -139,12 +139,12 @@ const Layout =() =>{
   // };
   
 
-  const handleMouseEnter =(e) =>{
-    setactiveMenu(e)
-  }
-  const handleMouseLeave =() =>{
-    setactiveMenu(null)
-  }
+  // const handleMouseEnter =(e) =>{
+  //   setactiveMenu(e)
+  // }
+  // const handleMouseLeave =() =>{
+  //   setactiveMenu(null)
+  // }
   
     return(
         <>
@@ -218,7 +218,7 @@ const Layout =() =>{
               </div>
             </nav>
 
-            <nav className="bg-[#252525] lg:block hidden">
+            {/* <nav className="bg-[#252525] lg:block hidden">
               <ul className="flex justify-evenly py-3 uppercase font-semibold px-4" onMouseLeave={handleMouseLeave}>
                 <li 
                   className="text-white cursor-pointer text-[13px] relative"
@@ -348,7 +348,7 @@ const Layout =() =>{
                   </Link>
                 </li>
              </ul>
-            </nav>
+            </nav> */}
         </>
     )
 }
