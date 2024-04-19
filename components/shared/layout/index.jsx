@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Dropdown } from 'antd';
 
 const corrency_Lang =  [
@@ -85,7 +85,13 @@ const corrency_Lang =  [
   ]
 
   const Currency_languageDropdown = ({info}) => {
-    const selected = localStorage.getItem('selected') && localStorage.getItem('selected').split(',')
+    const [selected, setSelected] = useState();
+    
+    useEffect(()=>{
+      if(!localStorage.getItem('selected')) return localStorage.setItem('selected',[corrency_Lang[0].language,corrency_Lang[0].flag_image,corrency_Lang[0].currency])
+      setSelected(localStorage.getItem('selected').split(','))
+    },[])
+    
     const Menus= ()=>(
         corrency_Lang.map((item, index) => (
             <span key={index}>
@@ -122,10 +128,6 @@ const corrency_Lang =  [
   
 
 const Layout =() =>{
-
-  useEffect(()=>{
-    if(!localStorage.getItem('selected')) return localStorage.setItem('selected',[corrency_Lang[0].language,corrency_Lang[0].flag_image,corrency_Lang[0].currency])
-  },[])
 
   // const onFinish = (values) => {
   //   console.log('Received values:', values);
