@@ -1,9 +1,9 @@
-// import Layout from "@/components/shared";
+import Layout from "@/components/shared/layout";
 // import Login from '@/components/login-signup/login';
 
 // export default Login;
 
 const Home =() =>{
-    return <h1>Home</h1>
+    return <Layout/>
 }
 export default Home
