@@ -224,7 +224,7 @@ const Layout =() =>{
                   className="text-white cursor-pointer text-[13px] relative"
                   onMouseEnter={() => handleMouseEnter('new product')}
                 >
-                  <Link href="#" className="hover:text-gray-300">
+                  <Link href="#">
                     New Product
                   </Link>
                   {
