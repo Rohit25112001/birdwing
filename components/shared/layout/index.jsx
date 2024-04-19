@@ -220,7 +220,7 @@ const Layout =() =>{
 
             <nav className="bg-[#252525] lg:block hidden">
               <ul className="flex justify-evenly py-3 uppercase font-semibold px-4" onMouseLeave={handleMouseLeave}>
-                {/* <li 
+                <li 
                   className="text-white cursor-pointer text-[13px] relative"
                   onMouseEnter={() => handleMouseEnter('new product')}
                 >
@@ -265,7 +265,7 @@ const Layout =() =>{
                       </div>
                     </div>
                   }
-                </li> */}
+                </li>
                 <li 
                   className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
                   onMouseEnter={() => handleMouseEnter('specials')}
