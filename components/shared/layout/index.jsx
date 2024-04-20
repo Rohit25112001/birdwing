@@ -196,7 +196,25 @@ const menus = [
   {
     label:'for home',
     dropdown:true,
-    list:[],
+    width:'650px',
+    list:[
+      {
+        subheading:'gifts',
+        submenu:gifts
+      },
+      {
+        subheading:'homeware',
+        submenu:homeware
+      },
+      {
+        subheading:'Stationery',
+        submenu:Stationery
+      },
+      {
+        subheading:'Stationery',
+        submenu:Stationery
+      }
+    ],
     grid:4
   },
   {
