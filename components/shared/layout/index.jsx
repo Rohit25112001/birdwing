@@ -379,10 +379,8 @@ const Layout =() =>{
                       activeMenu===menuItems.label &&
                       <div className={`${menuItems.overflow && 'overflow-y-auto'} text-black shadow-2xl drop-shadow-lg bg-gray-100 absolute top-8 gap-3 ${menuItems.overflow ? 'py-5 px-3' : 'p-5'} grid grid-cols-${menuItems.grid} w-[${menuItems.width}]`}>
                         {
-                          // Array(menuItems.grid).fill(null).map((a)=>console.log(menuItems.label))
-                          // console.log(menuItems.label)
-                          menuItems.list.map((item)=>
-                            <div>
+                          menuItems.list.map((item,index)=>
+                            <div key={index}>
                               {
                                 item.img &&
                                 <div>
@@ -394,7 +392,7 @@ const Layout =() =>{
                                 item.submenu && <div className="flex flex-col h-full gap-2 pb-2 font-normal">
                                   {
                                     item.submenu && item.submenu.map((items,index)=>
-                                      <Link href="#" className="hover:text-orange-500">{items.label}</Link>
+                                      <Link key={index} href="#" className="hover:text-orange-500">{items.label}</Link>
                                     )
                                   }
                                 </div>
