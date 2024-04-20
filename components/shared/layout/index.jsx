@@ -193,15 +193,6 @@ const menus = [
     ],
     grid:1
   },
-//   Stationery
-
-// Cards
-
-// Notebooks
-
-// Office & Desktop
-
-// Pens
   {
     label:'for home',
     dropdown:true,
