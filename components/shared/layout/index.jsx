@@ -232,7 +232,7 @@ const Layout =() =>{
                     <div className="text-black shadow-2xl drop-shadow-lg bg-gray-100 absolute top-8 grid grid-cols-3 w-[650px] gap-3 p-8">
                       <div>
                         <div>
-                          <img src="/menus/m1.jpg"/>
+                          <img src="/menus/m1.jpg" alt="m1"/>
                         </div>
                         <div>
                           <h1 className="pt-3 pb-2 font-semibold text-[16px]">Gifts</h1>
@@ -247,7 +247,7 @@ const Layout =() =>{
                       </div>
                       <div>
                         <div>
-                          <img src="/menus/m2.jpg"/>
+                          <img src="/menus/m2.jpg" alt="m2"/>
                         </div>
                         <div>
                           <h1 className="pt-3 pb-2 font-semibold text-[16px]">Homeware</h1>
@@ -260,7 +260,7 @@ const Layout =() =>{
                       </div>
                       <div>
                         <div>
-                          <img src="/menus/m3.jpg" className="w-full"/>
+                          <img src="/menus/m3.jpg" alt="m2" className="w-full"/>
                         </div>
                       </div>
                     </div>
