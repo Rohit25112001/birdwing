@@ -222,13 +222,13 @@ const Layout =() =>{
               <ul className="flex justify-evenly py-3 uppercase font-semibold px-4" onMouseLeave={handleMouseLeave}>
                 <li 
                   className="text-white cursor-pointer text-[13px] relative"
-                  onMouseEnter={() => handleMouseEnter('new product')}
+                  onMouseEnter={() => handleMouseEnter("new product")}
                 >
                   <Link href="#" className="hover:text-gray-300">
                     New Product
                   </Link>
                   {
-                    activeMenu==='new product' &&
+                    activeMenu==="new product" &&
                     <div className="text-black shadow-2xl drop-shadow-lg bg-gray-100 absolute top-8 grid grid-cols-3 w-[650px] gap-3 p-8">
                       <div>
                         <div>
@@ -268,49 +268,49 @@ const Layout =() =>{
                 </li>
                 <li 
                   className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
-                  onMouseEnter={() => handleMouseEnter('specials')}
+                  onMouseEnter={() => handleMouseEnter("specials")}
                 >
                   <Link href="#">
                     specials
                   </Link>
                   {
-                    activeMenu==='specials' &&
+                    activeMenu==="specials" &&
                     <div className="bg-red-500 absolute top-8">ff</div>
                   }
                 </li>
                 <li 
                   className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
-                  onMouseEnter={() => handleMouseEnter('best sellers')}
+                  onMouseEnter={() => handleMouseEnter("best sellers")}
                 >
                   <Link href="#">
                     best sellers
                   </Link>
                   {
-                    activeMenu==='best sellers' &&
+                    activeMenu==="best sellers" &&
                     <div className="bg-red-500 absolute top-8">ff</div>
                   }
                 </li>
                 <li 
                   className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
-                  onMouseEnter={() => handleMouseEnter('for home')}
+                  onMouseEnter={() => handleMouseEnter("for home")}
                 >
                   <Link href="#">
                     for home
                   </Link>
                   {
-                    activeMenu==='for home' &&
+                    activeMenu==="for home" &&
                     <div className="bg-red-500 absolute top-8">ff</div>
                   }
                 </li>
                 <li 
                   className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
-                  onMouseEnter={() => handleMouseEnter('for mens')}
+                  onMouseEnter={() => handleMouseEnter("for mens")}
                 >
                   <Link href="#">
                     for mens
                   </Link>
                   {
-                    activeMenu==='for mens' &&
+                    activeMenu==="for mens" &&
                     <div className="bg-red-500 absolute top-8">ff</div>
                   }
                 </li>
