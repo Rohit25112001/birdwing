@@ -85,6 +85,161 @@ const corrency_Lang =  [
       flag_image: "https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Switzerland.svg"
     }
   ]
+ const gifts = [
+  {
+    label:'for architecture',
+    link:'#'
+  },
+  {
+    label:'for architecture',
+    link:'#'
+  },
+  {
+    label:'for architecture',
+    link:'#'
+  },
+  {
+    label:'for architecture',
+    link:'#'
+  },
+  {
+    label:'for architecture',
+    link:'#'
+  }
+ ]
+
+ const homeware = [
+  {
+    label:'dining',
+    link:'#'
+  },
+  {
+    label:'lighting and sound',
+    link:'#'
+  },
+  {
+    label:'living',
+    link:'#'
+  }
+]
+
+const Stationery = [
+          {
+            label:'Cards',
+            link:'#'
+          },
+          {
+            label:'Notebooks',
+            link:'#'
+          },
+          {
+            label:'Office & Desktop',
+            link:'#'
+          },
+          {
+            label:'Pens',
+            link:'#'
+          }
+        ]
+
+const menus = [
+  {
+    label:'new product',
+    dropdown:true,
+    grid:3,
+    width:'650px',
+    list:[
+      {
+        img:'/menus/m1.jpg',
+        subheading:'gifts',
+        submenu:gifts
+      },
+      {
+        img:'/menus/m2.jpg',
+        subheading:'homeware',
+        submenu:homeware
+      },
+      {
+        img:'/menus/m3.jpg',
+      }
+    ],
+  },
+  {
+    label:'specials',
+    dropdown:true,
+    overflow:true,
+    width:'200px',
+    list:[
+      {
+        subheading:'gifts',
+        submenu:gifts
+      },
+      {
+        subheading:'homeware',
+        submenu:homeware
+      }
+    ],
+    grid:1
+  },
+  {
+    label:'best sellers',
+    dropdown:true,
+    width:'200px',
+    list:[
+      {
+        subheading:'Stationery',
+        submenu:Stationery
+      }
+    ],
+    grid:1
+  },
+//   Stationery
+
+// Cards
+
+// Notebooks
+
+// Office & Desktop
+
+// Pens
+  {
+    label:'for home',
+    dropdown:true,
+    list:[],
+    grid:4
+  },
+  {
+    label:'for mens',
+    dropdown:true,
+    list:[],
+    grid:5
+  },
+  {
+    label:'for womens',
+    dropdown:true,
+    list:[],
+    link:false
+  },
+  {
+    label:'a product',
+    dropdown:true,
+    list:[],
+    link:false
+  },
+  {
+    label:'b product',
+    dropdown:true,
+    list:[],
+    link:false
+  },
+  {
+    label:'c product',
+    dropdown:true,
+    list:[],
+    link:false
+  }
+  
+]
 
 
 
@@ -219,135 +374,52 @@ const Layout =() =>{
 
             <nav className="bg-[#252525] lg:block hidden">
               <ul className="flex justify-evenly py-3 uppercase font-semibold px-4" onMouseLeave={handleMouseLeave}>
-                <li 
-                  className="text-white cursor-pointer text-[13px] relative"
-                  onMouseEnter={() => handleMouseEnter("new product")}
-                >
-                  <Link href="#" className="hover:text-gray-300">
-                    New Product
-                  </Link>
-                  {
-                    activeMenu==="new product" &&
-                    <div className="text-black shadow-2xl drop-shadow-lg bg-gray-100 absolute top-8 grid grid-cols-3 w-[650px] gap-3 p-8">
-                      <div>
-                        <div>
-                          <img src="/menus/m1.jpg" alt="m1"/>
-                        </div>
-                        <div>
-                          <h1 className="pt-3 pb-2 font-semibold text-[16px]">Gifts</h1>
-                          <div className="flex flex-col h-full gap-2 pb-2 font-normal">
-                            <Link href="#" className="hover:text-orange-500">for architecture</Link>
-                            <Link href="#" className="hover:text-orange-500">for fashion designer</Link>
-                            <Link href="#" className="hover:text-orange-500">for product designer</Link>
-                            <Link href="#" className="hover:text-orange-500">valentine's days</Link>
-                            <Link href="#" className="hover:text-orange-500">x-mas</Link>
-                          </div>
-                        </div>
+                {
+                  menus.map((menuItems,menuIndex) => 
+                  <li 
+                    key={menuIndex}
+                    className="text-white cursor-pointer text-[13px] relative"
+                    onMouseEnter={() => handleMouseEnter(menuItems.label)}
+                  >
+                    <Link href="#" className="hover:text-gray-300">
+                      {menuItems.label}
+                    </Link>
+                    {
+                      activeMenu===menuItems.label &&
+                      <div className={`${menuItems.overflow && 'overflow-y-auto'} text-black shadow-2xl drop-shadow-lg bg-gray-100 absolute top-8 gap-3 ${menuItems.overflow ? 'py-5 px-3' : 'p-5'} grid grid-cols-${menuItems.grid} w-[${menuItems.width}]`}>
+                        {
+                          // Array(menuItems.grid).fill(null).map((a)=>console.log(menuItems.label))
+                          // console.log(menuItems.label)
+                          menuItems.list.map((item)=>
+                            <div>
+                              {
+                                item.img &&
+                                <div>
+                                  <img src={item.img} alt="m1" className="w-full"/>
+                                </div>
+                              }
+                              {item.subheading && <h1 className="pt-3 pb-2 font-semibold text-[16px]">{item.subheading}</h1>}
+                              {
+                                item.submenu && <div className="flex flex-col h-full gap-2 pb-2 font-normal">
+                                  {
+                                    item.submenu && item.submenu.map((items,index)=>
+                                      <Link href="#" className="hover:text-orange-500">{items.label}</Link>
+                                    )
+                                  }
+                                </div>
+                              }
+                            </div>
+                          )
+                          // console.log(menuItems.grid)
+                        }
                       </div>
-                      <div>
-                        <div>
-                          <img src="/menus/m2.jpg" alt="m2"/>
-                        </div>
-                        <div>
-                          <h1 className="pt-3 pb-2 font-semibold text-[16px]">Homeware</h1>
-                          <div className="flex flex-col h-full gap-2 pb-2 font-normal">
-                            <Link href="#" className="hover:text-orange-500">dinning</Link>
-                            <Link href="#" className="hover:text-orange-500">lighting and sounds</Link>
-                            <Link href="#" className="hover:text-orange-500">for product designer</Link>
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <div>
-                          <img src="/menus/m3.jpg" alt="m2" className="w-full"/>
-                        </div>
-                      </div>
-                    </div>
-                  }
-                </li>
-                <li 
-                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
-                  onMouseEnter={() => handleMouseEnter("specials")}
-                >
-                  <Link href="#">
-                    specials
-                  </Link>
-                  {
-                    activeMenu==="specials" &&
-                    <div className="bg-red-500 absolute top-8">ff</div>
-                  }
-                </li>
-                <li 
-                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
-                  onMouseEnter={() => handleMouseEnter("best sellers")}
-                >
-                  <Link href="#">
-                    best sellers
-                  </Link>
-                  {
-                    activeMenu==="best sellers" &&
-                    <div className="bg-red-500 absolute top-8">ff</div>
-                  }
-                </li>
-                <li 
-                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
-                  onMouseEnter={() => handleMouseEnter("for home")}
-                >
-                  <Link href="#">
-                    for home
-                  </Link>
-                  {
-                    activeMenu==="for home" &&
-                    <div className="bg-red-500 absolute top-8">ff</div>
-                  }
-                </li>
-                <li 
-                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
-                  onMouseEnter={() => handleMouseEnter("for mens")}
-                >
-                  <Link href="#">
-                    for mens
-                  </Link>
-                  {
-                    activeMenu==="for mens" &&
-                    <div className="bg-red-500 absolute top-8">ff</div>
-                  }
-                </li>
-
-                <li 
-                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
-                  onMouseEnter={() => handleMouseEnter(null)}
-                >
-                  <Link href="#">
-                    for womens
-                  </Link>
-                </li>
-                <li 
-                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
-                  onMouseEnter={() => handleMouseEnter(null)}
-                >
-                  <Link href="#">
-                    for childrens
-                  </Link>
-                </li>
-                <li 
-                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
-                  onMouseEnter={() => handleMouseEnter(null)}
-                >
-                  <Link href="#">
-                    valentine days
-                  </Link>
-                </li>
-                <li 
-                  className="text-white hover:text-gray-300 cursor-pointer text-[13px] relative"
-                  onMouseEnter={() => handleMouseEnter(null)}
-                >
-                  <Link href="#">
-                    x-mas
-                  </Link>
-                </li>
+                    }
+                  </li>
+                )
+                }
              </ul>
             </nav>
+            <div className="h-[100vh]"></div>
         </>
     )
 }
