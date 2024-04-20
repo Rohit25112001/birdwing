@@ -137,6 +137,10 @@ const Layout =() =>{
   // const onFinish = (values) => {
   //   console.log('Received values:', values);
   // };
+  const arr = 'hey its me javascript';
+  useEffect(()=>{
+    console.log(arr[0])
+  },[])
   
 
   const handleMouseEnter =(e) =>{
