@@ -169,6 +169,7 @@ const menus = [
     dropdown:true,
     overflow:true,
     width:'200px',
+    grid:1,
     list:[
       {
         subheading:'gifts',
@@ -178,24 +179,24 @@ const menus = [
         subheading:'homeware',
         submenu:homeware
       }
-    ],
-    grid:1
+    ]
   },
   {
     label:'best sellers',
     dropdown:true,
     width:'200px',
+    grid:1,
     list:[
       {
         subheading:'Stationery',
         submenu:Stationery
       }
-    ],
-    grid:1
+    ]
   },
   {
     label:'for home',
     dropdown:true,
+    grid:4,
     width:'650px',
     list:[
       {
@@ -214,8 +215,7 @@ const menus = [
         subheading:'Stationery',
         submenu:Stationery
       }
-    ],
-    grid:4
+    ]
   },
   {
     label:'for mens',
@@ -395,7 +395,16 @@ const Layout =() =>{
                     </Link>
                     {
                       activeMenu===menuItems.label &&
-                      <div className={`${menuItems.overflow && 'overflow-y-auto'} text-black shadow-2xl drop-shadow-lg bg-gray-100 absolute top-8 gap-3 ${menuItems.overflow ? 'py-5 px-3' : 'p-5'} grid grid-cols-${menuItems.grid} w-[${menuItems.width}]`}>
+                      <div className='text-black shadow-2xl drop-shadow-lg bg-gray-100 absolute top-8 gap-3'
+                        style={{
+                          width:menuItems.width,
+                          overflowY:menuItems.overflow && 'auto',
+                          display: 'grid',
+                          gridTemplateColumns: `repeat(${menuItems.grid}, 1fr)`,
+                          gap: '30px',
+                          padding:menuItems.overflow ? '1.45rem 0.75rem' : '1.25rem'
+                        }}
+                      >
                         {
                           menuItems.list.map((item,index)=>
                             <div key={index}>
