@@ -91,19 +91,19 @@ const corrency_Lang =  [
     link:'#'
   },
   {
-    label:'for architecture',
+    label:'for fashion designers',
     link:'#'
   },
   {
-    label:'for architecture',
+    label:'for product designers',
     link:'#'
   },
   {
-    label:'for architecture',
+    label:"valentine's days",
     link:'#'
   },
   {
-    label:'for architecture',
+    label:'x-mas',
     link:'#'
   }
  ]
@@ -168,7 +168,7 @@ const menus = [
     label:'specials',
     dropdown:true,
     overflow:true,
-    width:'200px',
+    width:'230px',
     grid:1,
     list:[
       {
@@ -184,7 +184,7 @@ const menus = [
   {
     label:'best sellers',
     dropdown:true,
-    width:'200px',
+    width:'170px',
     grid:1,
     list:[
       {
@@ -425,7 +425,7 @@ const Layout =() =>{
                       {menuItems.label}
                     </Link>
                     {
-                      activeMenu===menuItems.label &&
+                      activeMenu===menuItems.label && menuItems.dropdown &&
                       <div className='text-black shadow-2xl drop-shadow-lg bg-gray-100 absolute top-8 gap-3'
                         style={{
                           width:menuItems.width,
