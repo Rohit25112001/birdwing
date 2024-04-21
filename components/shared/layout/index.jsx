@@ -241,11 +241,20 @@ const menus = [
         img:'/menus/hummingbird-printed-t-shirt.jpg',
         subheading:<div className="text-[12px]">
           <span>Playtype notebook</span>
-          <div>hhh</div>
+          <div className="flex gap-2 text-[14px]">
+            <span className="text-orange-500">$18.40</span>
+            <span className="text-gray-400" style={{ textDecoration: 'line-through' }}>$23.00</span>
+          </div>
         </div>
       },
       {
-        img:'/menus/mountain-fox-cushion.jpg'
+        img:'/menus/mountain-fox-cushion.jpg',
+        subheading:<div className="text-[12px]">
+          <span>Mini Bird Feeders - set of two</span>
+          <div className="flex gap-2 text-[14px]">
+            <span className="text-orange-500">$23.00</span>
+          </div>
+        </div>
       }
     ],
     width:'1000px',
@@ -254,25 +263,21 @@ const menus = [
   },
   {
     label:'for womens',
-    dropdown:true,
     list:[],
     link:false
   },
   {
     label:'a product',
-    dropdown:true,
     list:[],
     link:false
   },
   {
     label:'b product',
-    dropdown:true,
     list:[],
     link:false
   },
   {
     label:'c product',
-    dropdown:true,
     list:[],
     link:false
   }
