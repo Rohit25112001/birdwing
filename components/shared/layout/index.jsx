@@ -234,10 +234,6 @@ const menus = [
         submenu:Stationery
       },
       {
-        subheading:'Stationery',
-        submenu:Stationery
-      },
-      {
         img:'/menus/hummingbird-printed-t-shirt.jpg',
         subheading:<div className="text-[12px]">
           <span>Playtype notebook</span>
@@ -257,9 +253,9 @@ const menus = [
         </div>
       }
     ],
-    width:'1000px',
-    left:'-400px',
-    grid:6
+    width:'850px',
+    left:'-200px',
+    grid:5
   },
   {
     label:'for womens',
