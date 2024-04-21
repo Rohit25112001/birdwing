@@ -197,7 +197,7 @@ const menus = [
     label:'for home',
     dropdown:true,
     grid:4,
-    width:'650px',
+    width:'750px',
     list:[
       {
         subheading:'gifts',
@@ -220,8 +220,37 @@ const menus = [
   {
     label:'for mens',
     dropdown:true,
-    list:[],
-    grid:5
+    list:[
+      {
+        subheading:'gifts',
+        submenu:gifts
+      },
+      {
+        subheading:'homeware',
+        submenu:homeware
+      },
+      {
+        subheading:'Stationery',
+        submenu:Stationery
+      },
+      {
+        subheading:'Stationery',
+        submenu:Stationery
+      },
+      {
+        img:'/menus/hummingbird-printed-t-shirt.jpg',
+        subheading:<div className="text-[12px]">
+          <span>Playtype notebook</span>
+          <div>hhh</div>
+        </div>
+      },
+      {
+        img:'/menus/mountain-fox-cushion.jpg'
+      }
+    ],
+    width:'1000px',
+    left:'-400px',
+    grid:6
   },
   {
     label:'for womens',
@@ -381,6 +410,7 @@ const Layout =() =>{
               </div>
             </nav>
 
+            {/*menus navbar*/}
             <nav className="bg-[#252525] lg:block hidden">
               <ul className="flex justify-evenly py-3 uppercase font-semibold px-4" onMouseLeave={handleMouseLeave}>
                 {
@@ -402,7 +432,8 @@ const Layout =() =>{
                           display: 'grid',
                           gridTemplateColumns: `repeat(${menuItems.grid}, 1fr)`,
                           gap: '30px',
-                          padding:menuItems.overflow ? '1.45rem 0.75rem' : '1.25rem'
+                          padding:menuItems.overflow ? '1.45rem 0.75rem' : '1.25rem',
+                          left:menuItems.left
                         }}
                       >
                         {
@@ -426,7 +457,6 @@ const Layout =() =>{
                               }
                             </div>
                           )
-                          // console.log(menuItems.grid)
                         }
                       </div>
                     }
