@@ -667,7 +667,7 @@ const Layout =({children}) =>{
                   </Link>
                 </li>
                 
-                <div className={`bg-white absolute w-[310px] h-full top-0 left-0 p-2 translate-x-[${clientmenuMobile}] transition-all`}>
+                <div style={{ transform: `translateX(${clientmenuMobile})` }} className={`bg-white absolute w-[310px] h-full top-0 left-0 p-2 transition-all`}>
                   <button 
                     onClick={()=>setclientmenuMobile('-400px')}
                     className="p-2 bg-gray-200 rounded-full flex items-center hover:bg-gray-100"
