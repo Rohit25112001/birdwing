@@ -88,7 +88,7 @@ const corrency_Lang =  [
  const gifts = [
   {
     label:'for architecture',
-    link:'#'
+    link:'www.google.com'
   },
   {
     label:'for fashion designers',
@@ -316,22 +316,22 @@ const menus = [
   {
     label:'for womens',
     list:[],
-    link:false
+    link:'#'
   },
   {
     label:'for children',
     list:[],
-    link:false
+    link:'#'
   },
   {
     label:"valentine's day",
     list:[],
-    link:false
+    link:'#'
   },
   {
     label:'x-mas',
     list:[],
-    link:false
+    link:'#'
   }
   
 ]
@@ -386,7 +386,11 @@ const Layout =({children}) =>{
   const [isNavFixed, setIsNavFixed] = useState(false);
   const [open, setOpen] = useState(false);
   const [typeDrower, settypeDrower] = useState(false);
-  const [mobileDropdown, setmobileDropdown] = useState(null);
+  const [mobileDropdown, setmobileDropdown] = useState({
+    dropdown:false,
+    selectedMenu:null
+  });
+  const [clientmenuMobile, setclientmenuMobile] = useState('-400px');
 
   // const onFinish = (values) => {
   //   console.log('Received values:', values);
@@ -422,10 +426,12 @@ const Layout =({children}) =>{
   const handleDrawerType = (e)=>{
     settypeDrower(e)
     setOpen(true);
+    setclientmenuMobile('-400px')
   }
 
   const handleDropdown = (e) =>{
-    setmobileDropdown(e)
+    if(mobileDropdown.selectedMenu === e) return setmobileDropdown({dropdown:false,selectedMenu:null})
+    setmobileDropdown({dropdown:true,selectedMenu:e})
   }
   
     return(
@@ -515,9 +521,10 @@ const Layout =({children}) =>{
                     className="text-white cursor-pointer text-[13px] relative"
                     onMouseEnter={() => handleMouseEnter(menuItems.label)}
                   >
-                    <Link href="#" className="hover:text-gray-300">
+                    <Link href={menuItems.link ? menuItems.link : '#'} className="hover:text-gray-300">
                       {menuItems.label}
                     </Link>
+                    {/* <h1>{menuItems.link}</h1> */}
                     {
                       activeMenu===menuItems.label && menuItems.dropdown &&
                       <div className='text-black shadow-2xl drop-shadow-lg bg-gray-100 absolute top-8 gap-3'
@@ -533,7 +540,7 @@ const Layout =({children}) =>{
                       >
                         {
                           menuItems.list.map((item,index)=>
-                            <div key={index}>
+                            <div key={index} className="capitalize">
                               {
                                 item.img &&
                                 <div>
@@ -545,7 +552,7 @@ const Layout =({children}) =>{
                                 item.submenu && <div className="flex flex-col h-full gap-2 pb-2 font-normal">
                                   {
                                     item.submenu && item.submenu.map((items,index)=>
-                                      <Link key={index} href="#" className="hover:text-orange-500">{items.label}</Link>
+                                      <Link key={index} href={items.link} className="hover:text-orange-500">{items.label}</Link>
                                     )
                                   }
                                 </div>
@@ -608,15 +615,17 @@ const Layout =({children}) =>{
                           className="p-2 flex items-center rounded-full cursor-pointer bg-gray-100 
                           hover:bg-gray-200"
                         >
-                          <i className='bx bx-chevron-right text-[18px]'></i>
+                          {mobileDropdown.selectedMenu === menusItem.label ? 
+                          <i class='bx bxs-chevron-down'></i>:
+                          <i className='bx bx-chevron-right text-[18px]'></i>}
                         </button>
                       }
                     </div>
-                    { mobileDropdown === menusItem.label &&
+                    { mobileDropdown.selectedMenu && mobileDropdown.selectedMenu === menusItem.label &&
                       <div className="px-6">
                         {
                           menusItem.list.map((listItem,listIndex)=>
-                            <div key={listIndex}>
+                            <div key={listIndex} className="capitalize">
                               <h1 className="font-semibold text-orange-500">{listItem.subheading}</h1>
                               <div className="px-4 flex flex-col gap-1 py-2">
                                 {
@@ -641,7 +650,9 @@ const Layout =({children}) =>{
                   <Link href="#">
                     Client Service
                   </Link>
-                  <button className="p-2 flex items-center rounded-full cursor-pointer bg-gray-100 hover:bg-gray-200">
+                  <button 
+                    onClick={()=>setclientmenuMobile('0px')}
+                    className="p-2 flex items-center rounded-full cursor-pointer bg-gray-100 hover:bg-gray-200">
                     <i className='bx bx-chevron-right text-[18px]'></i>
                   </button>
                 </li>
@@ -655,6 +666,37 @@ const Layout =({children}) =>{
                     Contact Us
                   </Link>
                 </li>
+                
+                <div className={`bg-white absolute w-[310px] h-full top-0 left-0 p-2 translate-x-[${clientmenuMobile}] transition-all`}>
+                  <button 
+                    onClick={()=>setclientmenuMobile('-400px')}
+                    className="p-2 bg-gray-200 rounded-full flex items-center hover:bg-gray-100"
+                  >
+                    <i className='bx bx-left-arrow-alt text-[22px]'></i>
+                  </button>
+                  {/* <Divider/> */}
+                  {
+                    <ul className="flex flex-col gap-4 p-2 py-8">
+                      {
+                        clientService.map((clientItem,clientIndex)=>
+                          <li key={clientIndex}>
+                            <div className="flex items-center gap-3">
+                              {clientItem.icon}
+                              <h1 className="uppercase font-semibold">{clientItem.label}</h1>
+                            </div>
+                            <div className="flex flex-col gap-1 text-[14px] mt-1">
+                              {
+                                clientItem.list.map((listItem,listIndex)=>
+                                  <span className="" key={listIndex}>{listItem}</span>
+                                )
+                              }
+                            </div>
+                          </li>
+                        )
+                      }
+                    </ul>
+                  }
+                </div>
               </ul>
             }
           </Drawer>
