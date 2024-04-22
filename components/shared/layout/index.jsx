@@ -212,8 +212,28 @@ const menus = [
         submenu:Stationery
       },
       {
-        subheading:'Stationery',
-        submenu:Stationery
+        subheading:'toys',
+        submenu:[
+          {
+            label:'garden',
+            link:'#'
+          },
+          {
+            label:'for boy',
+            link:'#'
+          },
+          {
+            label:'for girl',
+            link:'#'
+          },{
+            label:'for adults',
+            link:'#'
+          },
+          {
+            label:'for baby',
+            link:'#'
+          }
+        ]
       }
     ]
   },
@@ -263,17 +283,17 @@ const menus = [
     link:false
   },
   {
-    label:'a product',
+    label:'for children',
     list:[],
     link:false
   },
   {
-    label:'b product',
+    label:"valentine's day",
     list:[],
     link:false
   },
   {
-    label:'c product',
+    label:'x-mas',
     list:[],
     link:false
   }
@@ -325,12 +345,29 @@ const menus = [
   };
   
 
-const Layout =() =>{
+const Layout =({children}) =>{
   const [activeMenu, setactiveMenu] = useState(null);
+  const [isNavFixed, setIsNavFixed] = useState(false);
 
   // const onFinish = (values) => {
   //   console.log('Received values:', values);
   // };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 118) {
+        setIsNavFixed(true);
+      } 
+      else {
+        setIsNavFixed(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isNavFixed]);
 
   const handleMouseEnter =(e) =>{
     setactiveMenu(e)
@@ -359,7 +396,7 @@ const Layout =() =>{
                 <li>
                   <img src="/logo.svg" className="w-[230px]"/>
                 </li>
-                <li className="w-[500px]">
+                <li className="w-[50%]">
                   <form className="flex">
                     <input type="text" placeholder="Search" className="w-[100%] rounded-tl-lg rounded-bl-lg text-[14px] px-4"/>
                     <button className="bg-[#FF6701] rounded-tr-lg rounded-br-lg text-white py-3 px-3 flex items-center">
@@ -412,7 +449,7 @@ const Layout =() =>{
             </nav>
 
             {/*menus navbar*/}
-            <nav className="bg-[#252525] lg:block hidden">
+            <nav className={`bg-[#252525] lg:block hidden w-full ${isNavFixed && 'fixed top-0'}`}>
               <ul className="flex justify-evenly py-3 uppercase font-semibold px-4" onMouseLeave={handleMouseLeave}>
                 {
                   menus.map((menuItems,menuIndex) => 
@@ -466,7 +503,12 @@ const Layout =() =>{
                 }
              </ul>
             </nav>
-            <div className="h-[100vh]"></div>
+            {/*body*/}
+            <div>
+              {children}
+            </div>
+            {/*body end*/}
+            <div className="h-[200vh]"></div>
         </>
     )
 }
