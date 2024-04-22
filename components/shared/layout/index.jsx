@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { Dropdown } from 'antd';
+import { Dropdown, Drawer, Divider } from 'antd';
 import Link from 'next/link'
 
 //json files
@@ -141,6 +141,42 @@ const Stationery = [
             link:'#'
           }
         ]
+
+const clientService = [
+  {
+    label:"our contact:",
+    icon:<i className='bx bx-phone-call text-[26px]'></i>,
+    list:[
+      "Mon-Fri: 9:00 am - 6:00 pm",
+      "Sat: 9:00 am - 4:00 pm",
+      "Sun: 9:00 am - 2:00 pm",
+      "8-100-9000-300",
+      "demo@demo.com",
+      "27 Oak Street, Tenafly, US, 07670"
+    ]
+  },
+  {
+    label:"Delivery:",
+    icon:<i className='text-[26px] bx bx-package'></i>,
+    list:[
+      "Free delivery all orders of $120 or more of eligible items across any product category qualify"
+    ]
+  },
+  {
+    label:"Payments:",
+    icon:<i className='text-[26px] bx bx-credit-card'></i>,
+    list:[
+      "Credit Card: Visa, MasterCard, Maestro, American Express"
+    ]
+  },
+  {
+    label:"Return Policy:",
+    icon:<i className='text-[26px] bx bx-undo'></i>,
+    list:[
+      "You can return any item purchased within 16 days of the delivery date"
+    ]
+  }
+]
 
 const menus = [
   {
@@ -348,6 +384,9 @@ const menus = [
 const Layout =({children}) =>{
   const [activeMenu, setactiveMenu] = useState(null);
   const [isNavFixed, setIsNavFixed] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [typeDrower, settypeDrower] = useState(false);
+  const [mobileDropdown, setmobileDropdown] = useState(null);
 
   // const onFinish = (values) => {
   //   console.log('Received values:', values);
@@ -375,16 +414,30 @@ const Layout =({children}) =>{
   const handleMouseLeave =() =>{
     setactiveMenu(null)
   }
+
+  const onClose = () => {
+    setOpen(false);
+  };
+
+  const handleDrawerType = (e)=>{
+    settypeDrower(e)
+    setOpen(true);
+  }
+
+  const handleDropdown = (e) =>{
+    setmobileDropdown(e)
+  }
   
     return(
         <>
             {/* navbar */}
+          <header>
             <nav className="text-[12px] py-2 text-gray-500 hidden lg:flex">
                 <span className="w-[40%] text-center py-1">Buy here and save up to 30%. Every second product for free!</span>
                 <div className="flex gap-6 w-[60%] justify-center">
                     <span className="px-3 py-1 border-r border-gray-300 text-center">Phone:8 800 300 100</span>
                     <span className="px-3 py-1 border-r border-gray-300 text-center">Email:a@gmail.com</span>
-                    <span className="px-3 py-1 border-r border-gray-300 text-center">Client service</span>
+                    <span className="px-3 py-1 border-r border-gray-300 text-center cursor-pointer underline" onClick={()=>handleDrawerType(true)}>Client service</span>
                     <Currency_languageDropdown info="flag"/>
                     <Currency_languageDropdown info="currency"/>
                 </div>
@@ -425,7 +478,11 @@ const Layout =({children}) =>{
             <nav className="lg:hidden block">
               <ul className="flex justify-between items-center px-3 py-2 border-b border-gray-300">
                 <li>
-                  <button className="hover:bg-gray-300 p-1 rounded-full flex items-center"><i className='bx bx-menu md:text-[30px] text-[25px]'></i></button>
+                  <button 
+                    onClick={()=>handleDrawerType(false)}
+                    className="hover:bg-gray-300 p-1 rounded-full flex items-center">
+                      <i className='bx bx-menu md:text-[30px] text-[25px]'></i>
+                  </button>
                 </li>
                 <li>
                   <img src="/mobile-logo.svg" className="md:w-[200px] w-[160px]"/>
@@ -503,6 +560,105 @@ const Layout =({children}) =>{
                 }
              </ul>
             </nav>
+
+            <Drawer
+              title={`${typeDrower ? "Client Service":""}`}
+              placement={`${typeDrower ? "right" :"left"}`}
+              closable={true}
+              onClose={onClose}
+              open={open}
+              key="left"
+              width="310px"
+            >
+              {
+                typeDrower &&
+                <ul className="flex flex-col gap-4">
+                  {
+                    clientService.map((clientItem,clientIndex)=>
+                      <li key={clientIndex}>
+                        <div className="flex items-center gap-3">
+                          {clientItem.icon}
+                          <h1 className="uppercase font-semibold">{clientItem.label}</h1>
+                        </div>
+                        <div className="flex flex-col gap-1 text-[14px] mt-1">
+                          {
+                            clientItem.list.map((listItem,listIndex)=>
+                              <span className="" key={listIndex}>{listItem}</span>
+                            )
+                          }
+                        </div>
+                      </li>
+                    )
+                  }
+                </ul>
+              }
+            { !typeDrower && 
+              <ul className="flex flex-col gap-4 uppercase">
+                {
+                  menus.map((menusItem,menusIndex)=>
+                  <li key={menusIndex}>
+                    <div className="flex justify-between items-center font-bold">
+                      <Link href="#">
+                        {menusItem.label}
+                      </Link>
+                      {
+                        menusItem.dropdown && 
+                        <button
+                          onClick={()=>handleDropdown(menusItem.label)}
+                          className="p-2 flex items-center rounded-full cursor-pointer bg-gray-100 
+                          hover:bg-gray-200"
+                        >
+                          <i className='bx bx-chevron-right text-[18px]'></i>
+                        </button>
+                      }
+                    </div>
+                    { mobileDropdown === menusItem.label &&
+                      <div className="px-6">
+                        {
+                          menusItem.list.map((listItem,listIndex)=>
+                            <div key={listIndex}>
+                              <h1 className="font-semibold text-orange-500">{listItem.subheading}</h1>
+                              <div className="px-4 flex flex-col gap-1 py-2">
+                                {
+                                  listItem.submenu && listItem.submenu.map((submenuItem,submenuIndex)=>
+                                    <Link href={submenuItem.link} key={submenuIndex}>{submenuItem.label}</Link>
+                                  )
+                                }
+                              </div>
+                            </div>
+                          )
+                        }
+                      </div>
+                    }
+                  </li>
+                
+                )
+                }
+
+                <Divider/>
+                
+                <li className="font-bold flex justify-between">
+                  <Link href="#">
+                    Client Service
+                  </Link>
+                  <button className="p-2 flex items-center rounded-full cursor-pointer bg-gray-100 hover:bg-gray-200">
+                    <i className='bx bx-chevron-right text-[18px]'></i>
+                  </button>
+                </li>
+                <li className="font-bold">
+                  <Link href="#">
+                    Wishlist
+                  </Link>
+                </li>
+                <li className="font-bold">
+                  <Link href="#">
+                    Contact Us
+                  </Link>
+                </li>
+              </ul>
+            }
+          </Drawer>
+            </header>
             {/*body*/}
             <div>
               {children}
