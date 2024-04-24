@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { Dropdown, Drawer, Divider } from 'antd';
+import { Dropdown, Drawer, Divider, Form, Input, Checkbox } from 'antd';
 import Link from 'next/link'
 
 //json files
@@ -336,6 +336,80 @@ const menus = [
   
 ]
 
+const footer = [
+  {
+    heading:'about shop',
+    list:[
+      {
+        label:'Delivery',
+        link:'#'
+      },
+      {
+        label:'Legal Notice',
+        link:'#'
+      },
+      {
+        label:'Stores',
+        link:'#'
+      },
+      {
+        label:'Login',
+        link:'#'
+      }
+    ]
+  },
+  {
+    heading:'CATEGORIES',
+    list:[
+      {
+        label:'About us',
+        link:'#'
+      },
+      {
+        label:'Secure payment',
+        link:'#'
+      },
+      {
+        label:'Contact us',
+        link:'#'
+      },
+      {
+        label:'Sitemap',
+        link:'#'
+      },
+      {
+        label:'Our blog',
+        link:'#'
+      }
+    ]
+  },
+  {
+    heading:'YOUR ACCOUNT',
+    list:[
+      {
+        label:'Personal info',
+        link:'#'
+      },
+      {
+        label:'Orders',
+        link:'#'
+      },
+      {
+        label:'Credit slips',
+        link:'#'
+      },
+      {
+        label:'Addresses',
+        link:'#'
+      },
+      {
+        label:'Vouchers',
+        link:'#'
+      }
+    ]
+  }
+]
+
 
 
   const Currency_languageDropdown = ({info}) => {
@@ -391,6 +465,10 @@ const Layout =({children}) =>{
     selectedMenu:null
   });
   const [clientmenuMobile, setclientmenuMobile] = useState('-400px');
+  const [footerDropdown, setfooterDropdown] = useState({
+    dropdown:false,
+    selectedFooter:null
+  });
 
   // const onFinish = (values) => {
   //   console.log('Received values:', values);
@@ -432,6 +510,14 @@ const Layout =({children}) =>{
   const handleDropdown = (e) =>{
     if(mobileDropdown.selectedMenu === e) return setmobileDropdown({dropdown:false,selectedMenu:null})
     setmobileDropdown({dropdown:true,selectedMenu:e})
+  }
+
+  const handleFooterdropdown =(e) =>{
+    if(footerDropdown.selectedFooter === e) return setfooterDropdown({dropdown:false,selectedFooter:null})
+    setfooterDropdown({
+      dropdown:true,
+      selectedFooter:e
+    })
   }
   
     return(
@@ -612,7 +698,7 @@ const Layout =({children}) =>{
                         menusItem.dropdown && 
                         <button
                           onClick={()=>handleDropdown(menusItem.label)}
-                          className="p-2 flex items-center rounded-full cursor-pointer bg-gray-100 
+                          className="p-1 flex items-center rounded-full cursor-pointer bg-gray-100 
                           hover:bg-gray-200"
                         >
                           {mobileDropdown.selectedMenu === menusItem.label ? 
@@ -627,7 +713,7 @@ const Layout =({children}) =>{
                           menusItem.list.map((listItem,listIndex)=>
                             <div key={listIndex} className="capitalize">
                               <h1 className="font-semibold text-orange-500">{listItem.subheading}</h1>
-                              <div className="px-4 flex flex-col gap-1 py-2">
+                              <div className="px-4 flex flex-col gap-2 py-2">
                                 {
                                   listItem.submenu && listItem.submenu.map((submenuItem,submenuIndex)=>
                                     <Link href={submenuItem.link} key={submenuIndex}>{submenuItem.label}</Link>
@@ -646,13 +732,13 @@ const Layout =({children}) =>{
 
                 <Divider/>
                 
-                <li className="font-bold flex justify-between">
+                <li className="font-bold flex justify-between items-center">
                   <Link href="#">
                     Client Service
                   </Link>
                   <button 
                     onClick={()=>setclientmenuMobile('0px')}
-                    className="p-2 flex items-center rounded-full cursor-pointer bg-gray-100 hover:bg-gray-200">
+                    className="p-1 flex items-center rounded-full cursor-pointer bg-gray-100 hover:bg-gray-200">
                     <i className='bx bx-chevron-right text-[18px]'></i>
                   </button>
                 </li>
@@ -701,12 +787,84 @@ const Layout =({children}) =>{
             }
           </Drawer>
             </header>
+
             {/*body*/}
-            <div>
+            <div className="h-[600px]">
               {children}
             </div>
             {/*body end*/}
-            <div className="h-[200vh]"></div>
+
+            <footer className="bg-[#313131] relative">
+              <div className="flex justify-center">
+                <div className="bg-[#FF6701] absolute lg:top-[-50px] top-[-160px] lg:rounded-lg lg:w-[80%] w-full flex flex-col lg:flex-row items-center p-2 lg:gap-0 gap-1">
+                  <div className="flex items-center lg:justify-end gap-3 w-full">
+                    <img src="/plain-removebg-preview.png" className="w-[60px] h-[60px] "/>
+                    <h1 className="text-[23px] text-white  ">Get our latest news and special sales</h1>
+                  </div>
+                  <div className="text-white lg:w-[60%] w-full">
+                    <form className="flex flex-col gap-2 items-start">
+                      <input type='text' className="lg:w-[90%] w-full p-2 rounded-lg"/>
+                      <div className="lg:flex gap-2 items-center">
+                        <input type="checkbox" className="mx-1 lg:mx-0"/>
+                        <label className="text-[12px]">I agree to the terms and conditions and the privacy policy</label>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="lg:p-12 flex flex-col lg:flex-row">
+                <div className=" text-white :w-[40%] w-full lg:flex hidden flex-col gap-2 justify-center items-center">
+                  <img src="/logo.svg" className="w-[230px]"/>
+                  <span>© 2024 - Ecommerce software by PrestaShop™</span>
+                </div>
+                <div className="text-white lg:w-[60%] w-full lg:flex hidden">
+                 {
+                  footer.map((footerItem,footerIndex)=>
+                    <div key={footerIndex} className="flex flex-col gap-2 w-full p-5">
+                      <h1 className="uppercase font-semibold">{footerItem.heading}</h1>
+                      <div className="flex flex-col capitalize gap-1 text-[15px]">
+                        {
+                          footerItem.list.map((listItem,listIndex)=>
+                            <Link href={listItem.link} key={listIndex} className="hover:text-orange-500">{listItem.label}</Link>
+                          )
+                        }
+                      </div>
+                    </div>
+                  )
+                 }
+                </div>
+                {/*mobile footer*/}
+                <div className="text-white lg:w-[60%] w-full lg:hidden block p-1">
+                 {
+                  footer.map((footerItem,footerIndex)=>
+                    <div key={footerIndex} className="flex flex-col w-full p-3">
+                      <div className="flex items-center justify-between">
+                        <h1 className="uppercase font-semibold">{footerItem.heading}</h1>
+                        <button className="bg-gray-400 rounded-full flex items-center" onClick={()=>handleFooterdropdown(footerItem.heading)}>
+                          <i className='bx bx-chevron-down'></i>
+                        </button>
+                      </div>
+                      {
+                        footerDropdown.dropdown && footerDropdown.selectedFooter === footerItem.heading &&
+                        <div className="flex flex-col capitalize gap-1 text-[15px]">
+                          {
+                            footerItem.list.map((listItem,listIndex)=>
+                              <Link href={listItem.link} key={listIndex} className="hover:text-orange-500">{listItem.label}</Link>
+                            )
+                          }
+                        </div>
+                      }
+                    </div>
+                  )
+                 }
+                </div>
+                <div className="text-white w-full lg:hidden flex flex-col gap-2 justify-center items-center my-4">
+                  <img src="/logo.svg" className="w-[230px]"/>
+                  <span>© 2024 - Ecommerce software by PrestaShop™</span>
+                </div>
+              </div>
+            </footer>
         </>
     )
 }
